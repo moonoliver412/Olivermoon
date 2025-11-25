@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon | Portfolio</title>
+  <link rel="stylesheet" href="index.css">
+  
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">OM</div>
+    <nav>
+      <ul>
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <!-- Left Side: Image -->
+    <div class="hero-image">
+      <img src="image/Moondp.png" alt="Portfolio showcase">
+    </div>
+
+    <!-- Right Side: Text Content -->
+    <div class="hero-content">
+      <h1>Oliver Moon</h1>
+      <h2>A Software Developer</h2>
+      <p>I deliver high-end websites with slick animations and unique designs to meet client needs.</p>
+      <div class="hero-buttons">
+        <a href="project.html" class="btn primary">View My Work</a>
+        <a href="contact.html" class="btn secondary">Contact Me</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Select all sections and nav links
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".navbar a");
+  
+    window.addEventListener("scroll", () => {
+      let current = "";
+  
+      // Find the section currently in view
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - sectionHeight / 3) {
+          current = section.getAttribute("id");
+        }
+      });
+  
+      // Remove active class from all links, then add to the current one
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").includes(current)) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", e => {
+        if (link.href && !link.href.includes("#")) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = link.href;
+          }, 500); // matches transition duration
+        }
+      });
+    });
+  </script>
+  
+  
+</body>
+</html>
